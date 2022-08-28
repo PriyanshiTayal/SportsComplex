@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from sports import views as s_views
+from users import views as u_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',s_views.home, name = 'home'),
+    path('slot_book/',s_views.slot_book, name = 'slot_book'),
+    path('login/',u_views.login, name = 'login'),
+    path('dologin/',u_views.dologin, name = 'dologin'),
+    path('register/',u_views.register, name = 'register'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name = 'logout'),
+    path('profile/',u_views.profile, name = 'profile'),
 ]

@@ -6,11 +6,11 @@ from users.models import Member
 
 class Sport(models.Model):
     name = models.CharField(max_length=20, unique = True )
-    img_url = models.CharField(max_length=2083, default = 'https://alumni.iitd.ac.in/home/wp-content/uploads/2022/03/msc-930x620.png')
-
+    img_url = models.CharField(max_length=2083, default = 'https://uploads-ssl.webflow.com/617b224ba2374548fcc039ba/617b224ba237453ce1c0409b_hpfulq-1234-1024x512.jpg')
+    
 class Equipment(models.Model):
     name = models.CharField(max_length=20, unique = True )
-    quantity = models.IntegerField(max_length=5, unique = True )
+    quantity = models.IntegerField( unique = True )
     sport = models.ForeignKey(Sport,on_delete=models.CASCADE)
 
 class Court(models.Model):
