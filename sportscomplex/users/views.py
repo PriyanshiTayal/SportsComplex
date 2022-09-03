@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login as auth_login, authenticate
+from django.contrib.auth.decorators import login_required
 
 from sports.models import Court, Sport, Equipment, Booking , Slot
 
@@ -46,6 +47,7 @@ def register(request):
         form = UserRegisterForm()
     return render(request,'users/register.html', {'form': form})
 
+@login_required
 def profile(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST,instance=request.user)
@@ -61,9 +63,10 @@ def profile(request):
         'u_form':u_form,
         'bookings':bookings
     }
-
+    print(bookings)
     return render(request, 'users/profile.html', context)
 
+@login_required
 def add_staff(request):
     if request.method == 'POST':
         try:
@@ -82,6 +85,7 @@ def add_staff(request):
         users = User.objects.all()
         return render(request,'users/add_staff.html',{'users':users})
 
+@login_required
 def remove_staff(request):
     if request.method == 'POST':
         try:

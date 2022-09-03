@@ -1,0 +1,53 @@
+{% extends 'sports/base.html' %}
+{% block style %}
+<style>
+    h1 {text-align: center;}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="center"><b>{{ court.sport.name }}</b></h1>
+    <div class="col-md-12">
+        <div class="container-fluid">
+            <div class="card-header">
+                <h2>Court : {{ court.name }}</h2>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class = "table align-middle">                            
+                            <tr>
+                                <td>{{ today|date:'F d, Y' }}</td>
+                                {% for slot in today_slots %}
+                                <td>
+                                    <a id = "{{ slot.id }}" class = "btn btn-primary" href = "/slot_book/{{ slot.id }}">{{ slot.start_time }} - {{ slot.end_time }}</a>
+                                </td>
+                                
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>{{ tomm1|date:'F d, Y' }}</td>
+                                {% for slot in tomm1_slots %}
+                                <td>
+                                    <a id = "{{ slot.id }}" class = "btn btn-primary" href = "/slot_book/{{ slot.id }}">{{ slot.start_time }} - {{ slot.end_time }}</a>
+                                </td>
+                                
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>{{ tomm2|date:'F d, Y' }}</td>
+                                {% for slot in tomm2_slots %}
+                                <td>
+                                    <a id = "{{ slot.id }}" class = "btn btn-primary" href = "/slot_book/{{ slot.id }}">{{ slot.start_time }} - {{ slot.end_time }}</a>
+                                </td>
+                                
+                                {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

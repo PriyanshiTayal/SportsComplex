@@ -31,9 +31,10 @@ urlpatterns = [
 
     path('',s_views.home, name = 'home'),
     path('sport_page/<slug:sport>', s_views.sport_page, name = 'sport_page'), 
-    path('slot_book/',s_views.slot_book, name = 'slot_book'),
+    path('slot_book/<slug:slot_id>',s_views.slot_book, name = 'slot_book'),
     path('add_sport/',s_views.add_sport, name = 'add_sport'),
     path('add_court/',s_views.add_court, name = 'add_court'),
     path('add_equipment/',s_views.add_equipment, name = 'add_equipment'),
     path('add_slot/',s_views.add_slot, name = 'add_slot'),
+    path('available_slot/<slug:court>', s_views.available_slot, name = 'available_slot'),
 ]

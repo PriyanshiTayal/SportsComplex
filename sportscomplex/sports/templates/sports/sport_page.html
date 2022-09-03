@@ -15,17 +15,30 @@
                 <ul>
                     <li><p>Want to Book a Slot to Play in our Sports Complex!</p></li>
                 </ul>
-                <a href="{% url 'slot_book' %}" class="btn btn-primary">Available Slots </a>
             </div>
             <div class="card-header">
                 <h2> Total Courts : {{ sport.court_set.count }}</h2>
-                <ol>
-                {% for court in courts %}
-                
-                    <li>{{ court.name }}</li>
-                
-                {% endfor %}
-                </ol>
+                <div class="table-responsive">
+                    <table class = "table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Sr. No.</th>
+                            <th>Court</th>
+                            <th>Available</th>
+                        </tr>
+                        </thead>
+                        {% for court in courts %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ court.name }}</td>
+                            <td>
+                                <a href="/available_slot/{{ court.name }}" class="btn btn-primary">Available Slots </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
             </div>
             <div class="card-header">
                 <h2>Inventory</h2>
@@ -42,9 +55,11 @@
                             {% for equipment in equipments %}
                             <tr>
                                 <td>{{ forloop.counter }}</td>
-                                <td>{{ equipment.name }}</a></td>
+                                <td>{{ equipment.name }}</td>
                                 <td>{{ equipment.quantity }}</td>
+                            </tr>
                             {% endfor %}
+
                         </table>
                     </div>
                 </div>

@@ -1,7 +1,36 @@
 {% extends 'sports/base.html' %}
 
 {% block content %}
+<div class="card-header">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class = "form-group">
+            <legend class ="border-bottom mb-4">Book this Slot</legend>
 
-    <h1>Available slots are here, daywise</h1>
+            <label>Are you sure to book this slot?</label>
+            <div class="mb-3 row">
+                <label for="court" class="col-sm-2 col-form-label">Court</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="court" value="{{ slot.court.name }}">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="date" class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="date" value="{{ slot.date }}">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="slot" class="col-sm-2 col-form-label">Slot</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="slot" value="{{ slot.start_time }} - {{ slot.end_time }}">
+                </div>
+              </div>
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type = "submit">Yes! Book</button>
+        </div>
+    </form>
+</div>
 
 {% endblock %}

@@ -1,5 +1,6 @@
 {% extends 'sports/base.html' %}
 {% load crispy_forms_tags %}
+{% load auth_extras %}
 {% block content %}
 <div class="content-section">
     <div class="card-header">
@@ -22,6 +23,7 @@
         </form>
     </div>
     <div class="card-header">
+        {% if request.user|has_attr:"member" %} 
         <h2>Your Slot Bookings</h2>
         <div class="card-body">
             <div class="table-responsive">
@@ -38,14 +40,16 @@
                     {% for booking in bookings %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ booking.slot.date }}</a></td>
-                        <td>{{ booking.slot.start_time }} - {{ booking.slot.end_time }}</td>
-                        <td>{{ booking.slot.court.sport }}</a></td>
-                        <td>{{ booking.slot.court }}</a></td>
+                        <td>{{ booking.time_slot.date }}</a></td>
+                        <td>{{ booking.time_slot.start_time }} - {{ booking.time_slot.end_time }}</td>
+                        <td>{{ booking.time_slot.court.sport }}</a></td>
+                        <td>{{ booking.time_slot.court }}</a></td>
                     {% endfor %}
                 </table>
             </div>
         </div>
+        {% endif %}
+
     </div>
 </div>
 {% endblock content %}

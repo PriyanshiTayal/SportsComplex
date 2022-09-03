@@ -15,8 +15,8 @@
             <img src="{{ sport.img_url }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{ sport.name }}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="/sport_page/{{ sport.name}}" class="btn btn-primary">For More Info & Booking -></a>
+              <p class="card-text">Courts: {{ sport.court_set.count }}</p>
+              <a href="/sport_page/{{ sport.name}}" class="btn btn-primary">More Info & Booking -></a>
             </div>
           </div>
     </div>
