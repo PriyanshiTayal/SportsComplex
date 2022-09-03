@@ -1,5 +1,12 @@
 {% extends 'sports/base.html' %}
 
+{% block navbar %}
+  <form class="d-flex" role="search" method = "GET" action = "{% url 'home' %}">
+    <input class="form-control me-2" type="search" placeholder="Search Sport" aria-label="Search" name="search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+{% endblock navbar %}
+
 {% block content %}
 <div class="row">
     {% for sport in sports %}
@@ -9,7 +16,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ sport.name }}</h5>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="{% url 'slot_book' %}" class="btn btn-primary">Book Your Slot</a>
+              <a href="/sport_page/{{ sport.name}}" class="btn btn-primary">For More Info & Booking -></a>
             </div>
           </div>
     </div>

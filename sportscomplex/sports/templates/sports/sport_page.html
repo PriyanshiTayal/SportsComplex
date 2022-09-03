@@ -1,0 +1,57 @@
+{% extends 'sports/base.html' %}
+{% block style %}
+<style>
+    h1 {text-align: center;}
+</style>
+{% endblock style %}
+
+
+{% block content %}
+<div class="container">
+    <h1 class="center"><b>{{ sport.name }}</b></h1>
+    <div class="col-md-12">
+        <div class="container-fluid">
+            <div class="card-header">
+                <ul>
+                    <li><p>Want to Book a Slot to Play in our Sports Complex!</p></li>
+                </ul>
+                <a href="{% url 'slot_book' %}" class="btn btn-primary">Available Slots </a>
+            </div>
+            <div class="card-header">
+                <h2> Total Courts : {{ sport.court_set.count }}</h2>
+                <ol>
+                {% for court in courts %}
+                
+                    <li>{{ court.name }}</li>
+                
+                {% endfor %}
+                </ol>
+            </div>
+            <div class="card-header">
+                <h2>Inventory</h2>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class = "table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th>Sr. No.</th>
+                                <th>Equipment</th>
+                                <th>Available</th>
+                            </tr>
+                            </thead>
+                            {% for equipment in equipments %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ equipment.name }}</a></td>
+                                <td>{{ equipment.quantity }}</td>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

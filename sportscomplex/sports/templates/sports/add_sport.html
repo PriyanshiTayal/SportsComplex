@@ -1,0 +1,31 @@
+
+{% extends 'sports/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card-header">
+    <div class = "contentsection">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                <legend class ="border-bottom mb-4">Add Sport</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class = "form-group">
+                <button class = "btn btn-outline-info" type = "submit">Add</button>
+            </div>
+        </form>
+        <div class="card-header">
+            <ul>
+                <li><p>Add Courts Here!</p></li>
+            </ul>
+            <a href="{% url 'add_court' %}" class="btn btn-primary">Add Court</a>
+        </div>
+        <div class="card-header">
+            <ul>
+                <li><p>Add Inventory Here!</p></li>
+            </ul>
+            <a href="{% url 'add_equipment' %}" class="btn btn-primary">Add Equipments</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

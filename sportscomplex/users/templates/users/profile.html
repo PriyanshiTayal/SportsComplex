@@ -1,0 +1,51 @@
+{% extends 'sports/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+    <div class="card-header">
+        <div class="media">
+                <!-- <img class="rounded-circle account-img" src="{{ user.profile_pic.url }}"> -->
+            <div class="media-body">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <p class="text-secondary">{{ user.email}}</p>
+            </div>
+        </div>
+        <form method="POST" enctype = "multipart/form-data">
+            {% csrf_token %}
+            <fieldset class = "form-group">
+                <legend class ="border-bottom mb-4">Profile Info</legend>
+                {{ u_form|crispy }}
+            </fieldset>
+            <div class = "form-group">
+                <button class = "btn btn-outline-info" type = "submit">Update Profile</button>
+            </div>
+        </form>
+    </div>
+    <div class="card-header">
+        <h2>Your Slot Bookings</h2>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class = "table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Date</th>
+                        <th>Time Slot</th>
+                        <th>Sport</th>
+                        <th>Court</th>
+                    </tr>
+                    </thead>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ booking.slot.date }}</a></td>
+                        <td>{{ booking.slot.start_time }} - {{ booking.slot.end_time }}</td>
+                        <td>{{ booking.slot.court.sport }}</a></td>
+                        <td>{{ booking.slot.court }}</a></td>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
