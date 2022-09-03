@@ -4,9 +4,6 @@ from django.contrib.auth.models import Group , User
 
 register = template.Library()
 
-@register.filter(name='has_group')
+@register.filter(name='has_attr')
 def has_attr(user, attribute): 
-    if hasattr(request.user, attribute) :
-        return True
-    else:
-        return False
+    return hasattr(user, attribute)

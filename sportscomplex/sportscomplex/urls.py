@@ -37,4 +37,8 @@ urlpatterns = [
     path('add_equipment/',s_views.add_equipment, name = 'add_equipment'),
     path('add_slot/',s_views.add_slot, name = 'add_slot'),
     path('available_slot/<slug:court>', s_views.available_slot, name = 'available_slot'),
+    path('member_bookings/',s_views.member_bookings, name = 'member_bookings'),
+    path('sport_bookings/<slug:sport>',s_views.sport_bookings, name = 'sport_bookings'),
+    path('all_bookings/',s_views.all_bookings, name = 'all_bookings'),
+    path('delete_booking/<slug:booking_id>',s_views.delete_booking, name = 'delete_booking'),
 ]

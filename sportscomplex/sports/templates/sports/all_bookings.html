@@ -1,0 +1,39 @@
+{% extends 'sports/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="content-section">
+    
+    <div class="card-header">
+        <h2>All Bookings</h2>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class = "table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Sport</th>
+                        <th>Court</th>
+                        <th>Date</th>
+                        <th>Time Slot</th>
+                        <th>Booked By</th>
+                        <th> </th>
+                    </tr>
+                    </thead>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ booking.time_slot.court.sport }}</a></td>
+                        <td>{{ booking.time_slot.court }}</a></td>
+                        <td>{{ booking.time_slot.date }}</a></td>
+                        <td>{{ booking.time_slot.start_time }} - {{ booking.time_slot.end_time }}</td>
+                        <td>{{ booking.booked_by }}</td>
+                        <td><a href= "/delete_booking/{{ booking.id }}" class="btn btn-primary">Delete Booking</a></td>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

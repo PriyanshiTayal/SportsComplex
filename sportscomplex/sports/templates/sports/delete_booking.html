@@ -1,0 +1,48 @@
+{% extends 'sports/base.html' %}
+
+{% block content %}
+<div class="card-header">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class = "form-group">
+            <legend class ="border-bottom mb-4">Delete this Booking</legend>
+
+            <label>Are you sure to delete this booking?</label>
+            <div class="mb-3 row">
+                <label for="sport" class="col-sm-2 col-form-label">Sport</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="sport" value="{{ booking.time_slot.court.sport.name }}">
+                </div>
+              </div>
+            <div class="mb-3 row">
+                <label for="court" class="col-sm-2 col-form-label">Court</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" id="court" value="{{ booking.time_slot.court.name }}">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="date" class="col-sm-2 col-form-label">Date</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="date" value="{{ booking.time_slot.date }}">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="slot" class="col-sm-2 col-form-label">Slot</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="slot" value="{{ booking.time_slot.start_time }} - {{ booking.time_slot.end_time }}">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="booked_by" class="col-sm-2 col-form-label">Booked By</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="slot" value="{{ booking.booked_by }}">
+                </div>
+              </div>
+        </fieldset>
+        <div class = "form-group">
+            <button class = "btn btn-outline-info" type = "submit">Yes! Delete</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

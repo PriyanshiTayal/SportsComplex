@@ -139,3 +139,39 @@ def slot_book(request, slot_id):
             return redirect('home')
     else:       
         return render(request,'sports/slot_book.html',{'slot':slot}) 
+
+@login_required
+def member_bookings(request):
+    bookings = Booking.objects.filter(booked_by = request.user)
+    return render(request, 'sports/member_bookings.html', {'bookings':bookings})
+
+@login_required
+def sport_bookings(request, sport):
+    sport = Sport.objects.get(name = sport)
+    courts = Court.objects.filter(sport = sport)
+    bookings = []
+    for court in courts:
+        slots = Slot.objects.filter(court = court)
+        for slot in slots:
+            if hasattr(slot, 'booking'):
+                bookings.append(slot)
+    return render(request, 'sports/sport_bookings.html', {'slots':bookings})
+
+@login_required
+def all_bookings(request):
+    bookings = Booking.objects.all()
+    return render(request, 'sports/all_bookings.html', {'bookings':bookings})
+
+@login_required
+def delete_booking(request,booking_id):
+    if request.method == 'POST':        
+        try:
+            Booking.objects.get(id = booking_id).delete()
+            messages.success(request, f'Booking Deleted Successfully!')
+            return redirect('all_bookings')
+        except:
+            messages.error(request, f"Booking couldn't be deleted!")
+            return redirect('all_bookings')
+    else: 
+        booking = Booking.objects.get(id = booking_id)     
+        return render(request,'sports/delete_booking.html',{'booking':booking}) 

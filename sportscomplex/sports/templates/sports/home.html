@@ -8,15 +8,18 @@
 {% endblock navbar %}
 
 {% block content %}
+<div class="card-header">
+    <h1>Welcome to Mittal Sports Complex!</h1>
+</div>
 <div class="row">
     {% for sport in sports %}
     <div class="col">
         <div class="card" style="width: 18rem;">
             <img src="{{ sport.img_url }}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{ sport.name }}</h5>
+              <h5 class="card-title"><b><u>{{ sport.name }}</u></b></h5>
               <p class="card-text">Courts: {{ sport.court_set.count }}</p>
-              <a href="/sport_page/{{ sport.name}}" class="btn btn-primary">More Info & Booking -></a>
+              <a href="/sport_page/{{ sport.name}}" class="btn btn-primary">More Info & Booking</a>
             </div>
           </div>
     </div>

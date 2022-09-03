@@ -63,7 +63,6 @@ def profile(request):
         'u_form':u_form,
         'bookings':bookings
     }
-    print(bookings)
     return render(request, 'users/profile.html', context)
 
 @login_required
