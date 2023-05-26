@@ -1,5 +1,5 @@
 # RecruitmentAssignment
-- I couldn't deploy on Heroku, pls visit using mhy code on github
+- The application isn't deployed yet, pls visit using my code on github
 
 - 5 users, with username 'useri' and password 'password@i'
 - 1 staff, with username 'staff' and password 'staff@pass'
